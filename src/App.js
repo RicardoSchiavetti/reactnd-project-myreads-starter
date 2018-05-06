@@ -1,7 +1,8 @@
 import React from 'react'
-//import BookShelf from './components/BookShelf'
-import TitleApp from './components/TitleApp'
-import * as BooksAPI from './api/BooksAPI'
+import { Route } from 'react-router-dom';
+import ListBooks from './components/ListBooks'
+import SearchBooksBar from './components/SearchBooksBar'
+
 import './App.css'
 
 /*
@@ -9,28 +10,16 @@ import './App.css'
 */
 class BooksApp extends React.Component {
 
-  state = {
-    books:[]
-  }
-
-  componentDidMount() {
-    BooksAPI.getAll().then((books) =>{
-      this.setState({ books })
-    }) 
-  }
-  
-  state = {
-    currentlyReading : [],
-    wantToRead       : [],
-    read             : []
-  }  
-
   render() {
     return (
       <div className='app'>
-        <div className='list-books'>
-          <TitleApp titleApp='MyReads'/>
-        </div>
+        <Route exact path='/' render={() => (
+            <ListBooks/>
+        )}/>
+        
+        <Route exact path='/search' render={() =>(
+          <SearchBooksBar/>
+        )}/>
       </div>
     )
   }

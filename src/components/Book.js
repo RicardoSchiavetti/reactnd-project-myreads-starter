@@ -1,33 +1,32 @@
-import React from 'react'
-
-class Book extends React.Component {
+import React, {Component} from 'react'
+import BookShelfChanger from './BookShelfChanger'
+import PropTypes from 'prop-types'
+class Book extends Component {
     static propTypes = {
         urlCover: PropTypes.string,
         bookTitle: PropTypes.string,
-        bookSubtitle: PropTypes.string,
         author: PropTypes.string
     }
 
-    state = {
-        urlCover:'',
-        bookTitle:'',
-        bookSubtitle:'',
-        author:''
-    }
-
     render() {
-        bookCoverStyle = {
+       const book = this.props.book
+       const bookCoverStyle = {
             width:  '128px',
             height: '193px',
-            backgroundImage: `url("${state.urlCover}")`            
+            backgroundImage: `url("${book.imageLinks.smallThumbnail}")`
         }
 
         return(
             <div className='book'>
                 <div className='book-top'>
-                    <div className='book-cover' style={bookCoverStyle} >
-                    </div>
+                    <div className='book-cover' style={bookCoverStyle}></div>
+                    <BookShelfChanger/>
                 </div>
+                <div className='book-title'> {book.title}</div>
+                { book.authors.length > 0 &&(
+                    book.authors.map(author => (
+                      <div key={author} className='book-authors'>{author}</div>
+                    )))}
             </div>
         )
     }
