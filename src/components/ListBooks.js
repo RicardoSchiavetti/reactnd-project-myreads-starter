@@ -10,7 +10,7 @@ class ListBooks extends Component{
         currentlyReading : [],
         wantToRead       : [],
         read             : []
-      }  
+      }
 
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
@@ -27,9 +27,8 @@ class ListBooks extends Component{
               this.setState( state => ({
                 read: state.read.concat([book])}))
             }
-          }
-        }) 
-      }
+      }}) 
+    }
 
     render(){
         
