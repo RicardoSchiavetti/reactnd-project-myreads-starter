@@ -7,38 +7,33 @@ import * as BooksAPI from '../api/BooksAPI'
 class ListBooks extends Component{   
     
     state = {
-        currentlyReading : [],
-        wantToRead       : [],
-        read             : []
+        books: ''
       }
 
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
-          for (let book of books) {
-            if(book.shelf === 'currentlyReading'){
-              this.setState( state => ({
-                currentlyReading : state.currentlyReading.concat([book])}))
-            }
-            if(book.shelf === 'wantToRead'){
-              this.setState( state => ({
-                wantToRead: state.wantToRead.concat([book])}))
-            }
-            if(book.shelf === 'read'){
-              this.setState( state => ({
-                read: state.read.concat([book])}))
-            }
-      }}) 
+          this.setState({books})
+      }) 
+    }
+
+    updateBook = (book, newShelf)=>{
+      this.setState((book) =>({
+        books: this.state.books.filter(b => b.id !== book.id)        
+      }))
     }
 
     render(){
+        const currentlyReading = this.state.books.length > 0 && this.state.books.filter(book => book.shelf ==='currentlyReading')
+        const wantToRead = this.state.books.length > 0 && this.state.books.filter(book => book.shelf ==='wantToRead')
+        const read = this.state.books.length > 0 && this.state.books.filter(book => book.shelf ==='read')
         
         return(
           <div className='list-books'>
           <TitleApp titleApp='MyReads'/>
           <div className='list-books-content'>
-            <BookShelf category={'Currently Reading'} books={this.state.currentlyReading}/>
-            <BookShelf category={'Want to Read'} books={this.state.wantToRead}/>
-            <BookShelf category={'Read'} books={this.state.read}/>
+            <BookShelf category={'Currently Reading'} books={currentlyReading} onChangeShelf={this.updateBook}/>
+            <BookShelf category={'Want to Read'} books={wantToRead} onChangeShelf={this.updateBook}/>
+            <BookShelf category={'Read'} books={read} onChangeShelf={this.updateBook}/>
             <SearchBar/>
           </div>
         </div>

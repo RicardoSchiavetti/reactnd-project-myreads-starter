@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import Book from './Book'
-class BookShelf extends Component {    
+class BookShelf extends Component {
+
+    updateShelf = (book, newShelf) =>{
+        this.props.onChangeShelf(book, newShelf)
+    }
+
     render(){        
         const books = this.props.books
         const category = this.props.category
@@ -12,7 +17,7 @@ class BookShelf extends Component {
                         { books.length > 0 && (
                             books.map((book) => (
                             <li key={book.title}>
-                                <Book book={book}/>
+                                <Book book={book} onBookChange={this.updateShelf}/>
                             </li>
                         )))}
                     </ol>

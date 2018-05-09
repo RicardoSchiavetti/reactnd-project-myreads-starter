@@ -8,6 +8,10 @@ class Book extends Component {
         author: PropTypes.string
     }
 
+    updateBookShelf = (book, newShelf) =>{
+        this.props.onBookChange(book, newShelf)
+    }
+
     render() {
        const book = this.props.book
        const bookCoverStyle = {
@@ -20,10 +24,10 @@ class Book extends Component {
             <div className='book'>
                 <div className='book-top'>
                     <div className='book-cover' style={bookCoverStyle}></div>
-                    <BookShelfChanger/>
+                    <BookShelfChanger book={book} onBookChange={this.updateBookShelf}/>
                 </div>
                 <div className='book-title'> {book.title}</div>
-                { book.authors.length > 0 &&(
+                {book.authors !== undefined && book.authors.length > 0 && (
                     book.authors.map(author => (
                       <div key={author} className='book-authors'>{author}</div>
                     )))}
