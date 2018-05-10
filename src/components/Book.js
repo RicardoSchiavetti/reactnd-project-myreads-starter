@@ -8,8 +8,8 @@ class Book extends Component {
         author: PropTypes.string
     }
 
-    updateBookShelf = (book, newShelf) =>{
-        this.props.onBookChange(book, newShelf)
+    updateBookShelf = (selectedBook) =>{
+        this.props.onBookChange(selectedBook)
     }
 
     render() {

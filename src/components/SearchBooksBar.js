@@ -16,8 +16,13 @@ class SearchBooksBar extends Component {
                 this.setState({books})
             })
         }
-        
     }
+
+    updateBook = (selectedBook) => {
+        this.setState({
+          books: this.state.books.filter(b => b.id !== selectedBook.id).concat(selectedBook)
+        })
+      }
 
     render(){
         const query = this.state.query
@@ -40,7 +45,7 @@ class SearchBooksBar extends Component {
                         { books !== undefined && books.length > 0 && (
                             books.map(book => (
                                 <li key={book.id}>
-                                    <Book book={book}/>
+                                    <Book book={book} onBookChange={this.updateBook}/>
                                 </li>
                             )))
                         }

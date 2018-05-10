@@ -16,10 +16,10 @@ class ListBooks extends Component{
       }) 
     }
 
-    updateBook = (book, newShelf)=>{
-      this.setState((book) =>({
-        books: this.state.books.filter(b => b.id !== book.id)        
-      }))
+    updateBook = (selectedBook) => {
+      this.setState({
+        books: this.state.books.filter(b => b.id !== selectedBook.id).concat(selectedBook)
+      })
     }
 
     render(){

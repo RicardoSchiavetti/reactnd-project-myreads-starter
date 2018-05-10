@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import Book from './Book'
 class BookShelf extends Component {
 
-    updateShelf = (book, newShelf) =>{
-        this.props.onChangeShelf(book, newShelf)
+    updateShelf = (selectedBook) =>{
+        this.props.onChangeShelf(selectedBook)
     }
 
     render(){        
