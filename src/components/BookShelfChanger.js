@@ -12,7 +12,7 @@ class BookShelfChanger extends Component {
         return(
             <div className='book-shelf-changer'> 
                 <select id='optShelf' onChange={this.onChange.bind(this)}>
-                    <option id='optDisable' value='disable'> Move to...</option>
+                    <option id='optDisable' value=''selected disabled> Move to...</option>
                     <option id='optCurrentlyRead' value='currentlyReading'> Currently Reading</option>
                     <option id='optWantRead' value='wantToRead'> Want to Read</option>
                     <option id='optRead' value='read'> Read</option>
