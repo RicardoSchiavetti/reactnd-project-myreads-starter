@@ -14,10 +14,11 @@ class Book extends Component {
 
     render() {
        const book = this.props.book
+       let thumb = book.imageLinks !== undefined && book.imageLinks.smallThumbnail
        const bookCoverStyle = {
             width:  '128px',
             height: '193px',
-            backgroundImage: `url("${book.imageLinks.smallThumbnail}")`
+            backgroundImage: `url("${thumb}")`
         }
 
         return(
