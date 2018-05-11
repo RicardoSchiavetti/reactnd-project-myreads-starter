@@ -7,19 +7,28 @@ import * as BooksAPI from '../api/BooksAPI'
 class ListBooks extends Component{   
     
     state = {
-        books: ''
+        books: []
       }
 
     componentDidMount() {
-        BooksAPI.getAll().then((books) => {
-          this.setState({books})
-      }) 
+        this.getAllRemoteBooks()
+    }
+
+    updateRemoteBooks(selectedBook){
+      BooksAPI.update(selectedBook, selectedBook.shelf)
+              .then(res => this.getAllRemoteBooks())
+              .catch(failure => ('Update failure'))
+    }
+
+    getAllRemoteBooks(){
+      BooksAPI.getAll().then((books) => {
+        this.setState({books})
+      })
     }
 
     updateBook = (selectedBook) => {
-      this.setState({
-        books: this.state.books.filter(b => b.id !== selectedBook.id).concat(selectedBook)
-      })
+      this.updateRemoteBooks(selectedBook);
+      this.getAllRemoteBooks();
     }
 
     render(){

@@ -10,7 +10,7 @@ class SearchBooksBar extends Component {
     }
 
     searchBooks = (query) => {
-        this.setState({ query : query.trim() })
+        this.setState({ query : query })
         if(query.length > 3){
             BooksAPI.search(query).then(books => {
                 this.setState({books})
@@ -18,11 +18,15 @@ class SearchBooksBar extends Component {
         }
     }
 
+    updateRemoteBooks(selectedBook) {
+        BooksAPI.update(selectedBook, selectedBook.shelf)
+                .then(res => ('Books updated'))
+                .catch(failure => ('Update failure'))
+    }    
+  
     updateBook = (selectedBook) => {
-        this.setState({
-          books: this.state.books.filter(b => b.id !== selectedBook.id).concat(selectedBook)
-        })
-      }
+      this.updateRemoteBooks(selectedBook);      
+    }
 
     render(){
         const query = this.state.query
@@ -34,9 +38,9 @@ class SearchBooksBar extends Component {
                     <Link to='/' className='close-search'>close </Link>
                     <div className='search-books-input-wraper'/>
                     <input type='text' 
-                           placeholder='Search by title or author'
-                           value={ query }
-                           onChange={(event) => this.searchBooks(event.target.value)}
+                            placeholder='Search by title or author'
+                            value={ query }
+                            onChange={(event) => this.searchBooks(event.target.value)}
                     />
                 </div>
 
@@ -51,7 +55,6 @@ class SearchBooksBar extends Component {
                         }
                     </ol>
                 </div>
-
             </div>
         )
     }
