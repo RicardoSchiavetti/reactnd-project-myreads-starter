@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import Book from './Book'
+/*
+    Class to organize books in shelf
+*/
 class BookShelf extends Component {
 
     updateShelf = (selectedBook) =>{
@@ -16,7 +19,7 @@ class BookShelf extends Component {
                     <ol className='books-grid'>
                         { books.length > 0 && (
                             books.map((book) => (
-                            <li key={book.title}>
+                            <li key={book.id}>
                                 <Book book={book} onBookChange={this.updateShelf}/>
                             </li>
                         )))}

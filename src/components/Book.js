@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 import BookShelfChanger from './BookShelfChanger'
 import PropTypes from 'prop-types'
+
+/**
+ * Class used to represent a book
+ */
 class Book extends Component {
     static propTypes = {
         urlCover: PropTypes.string,
