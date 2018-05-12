@@ -31,15 +31,15 @@ To get started developing right away:
         ├── SearchBar.js # Component used to search books in API.
         ├── SearchBooksBar.js # Component used to redirect to search page.
         ├── TitleApp.js # Component used to control title of application
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+├── App.css # Styles for your app. Feel free to customize this as you desire.
+├── App.js # This is the root of your app. Contains static HTML right now.
+├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
+
+├── icons # Helpful images for your app. Use at your discretion.
+│   ├── add.svg
+│   ├── arrow-back.svg
+│   └── arrow-drop-down.svg
+├── index.css # Global styles. You probably won't need to change anything here.
+└── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
 
